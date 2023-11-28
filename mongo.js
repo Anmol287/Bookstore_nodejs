@@ -4,16 +4,18 @@ let schema = new Schema({
   "email": String,
   "pass": String,
 })
+// var dotenv = require('dotenv').config({ path: __dirname + '/.env' })
+//   var url = process.env.mongo_url;
 
+require('dotenv').config({ path: __dirname + '/.env' })
 
 let User;
 
 function initialise() {
-  var dotenv = require('dotenv').config({ path: __dirname + '/.env' })
-  var url = process.env.mongo_url;
-  let db = mongoose.createConnection(url)
+  
+  let db = mongoose.createConnection(process.env.mongo_url)
   return new Promise((resolve, reject) => {
-    db.on('err', (err) => {
+    db.on('error', (err) => {
       console.log("Error: ", err);
       reject();
     })
@@ -28,7 +30,10 @@ function registeruser(userData) {
   initialise().then(() => {
     let user1 = new User(userData)
     user1.save((err) => {
-      if (err) { console.log("The user is already present") }
+      
+      if (err) { 
+        console.log("The user is already present") 
+      }
       else if (err) {
         console.log("error is creating user")
       }
@@ -38,12 +43,14 @@ function registeruser(userData) {
 function getuser(Email, Pass) {
   return new Promise((resolve, reject) => {
     initialise().then(() => {
-      User.find({ email: Email }).exec().then((data) => {
-        if (data[0].pass == Pass) {
-          resolve(true)
+      User.findOne({ email: Email }).exec().then((data) => {
+        if (data && data.pass === Pass) {
+           resolve(true);
+        } else {
+           resolve(false); // User not found or incorrect password
         }
-      })
-        .catch((err) => {
+        mongoose.connection.close();
+      }).catch((err) => {
           reject(err)
         })
     })

@@ -77,8 +77,8 @@ app.get("/register", function (req, res) {
 });
 
 app.post('/register', function (req, res) {
-  checker.registeruser(req.body)
-  res.render(path.join(__dirname, "/login.hbs"))
+    checker.registeruser(req.body)
+    res.render(path.join(__dirname, "/login.hbs"))
 })
 
 app.get("/logout", (req, res) => {
