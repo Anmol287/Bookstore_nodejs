@@ -8,7 +8,6 @@ let schema = new Schema({
 var dotenv=require('dotenv').config({path: __dirname + '/.env'})
 var url=process.env.mongo_url;
 let User;
-console.log(url)
 function initialise(){
   let db = mongoose.createConnection(url)
   
