@@ -4,16 +4,18 @@ let schema = new Schema({
   "email": String,
   "pass": String,
 })
+let User;
 // var dotenv = require('dotenv').config({ path: __dirname + '/.env' })
 //   var url = process.env.mongo_url;
 
 require('dotenv').config({ path: __dirname + '/.env' })
 
-let User;
-
 function initialise() {
-  
-  let db = mongoose.createConnection(process.env.mongo_url)
+  if (!process.env.mongourl) {
+    console.error("Mongo URL is not defined");
+    return Promise.reject("Mongo URL is not defined");
+  }
+  let db = mongoose.createConnection(process.env.mongourl)
   return new Promise((resolve, reject) => {
     db.on('error', (err) => {
       console.log("Error: ", err);
