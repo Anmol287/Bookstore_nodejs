@@ -1,0 +1,190 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book-Store</title>
+
+    <style>
+        /* ----------------------------------------------------- Navbar
+      ---------------------------------------------------------- */
+        .header {
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            background-image: url(headerimg.jpg);
+            background-size: cover;
+            width: 100%;
+        }
+
+        .headerlogo {
+            margin-top: 5px;
+        }
+
+        .headeritem {
+            margin-top: 40px;
+            margin-left: auto;
+            font-size: large;
+            font-family: 'Gill Sans', 'Gill SansMT', Calibri, ' Trebuchet MS', sans-serif; 
+            } 
+            
+        #links { background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            justify-content: space-between;
+            margin-top: 60px;
+            margin-right: 20px;
+            padding: 10px;
+            text-decoration:none;
+            border-radius: 10px;
+        }
+
+        #links:hover {
+            background-color: rgb(76, 151,76);
+            color: white;
+        }
+
+        #cart {
+            margin-right: 10px;
+            margin-top: 15px;
+        }
+
+        * {
+            margin: 0;
+        }
+
+        #logout_link {
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+
+        /*-------------------content--------------*/
+        body {
+            background:
+                url("https://s-media-cache-ak0.pinimg.com/736x/f4/ac/6a/f4ac6aac3afb587f6cae04155656fca3.jpg");
+            font-family: 'Dancing Script', cursive;
+        }
+
+        h1 {
+            color: #474544;
+            font-size:32px;
+            font-weight: 700;
+            letter-spacing: 7px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-top: 5rem;
+            margin-bottom: 15px;
+        }
+
+        .container {
+            color:
+                #474544;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 7px;
+            /*
+      text-align: center; */
+            /* text-transform: uppercase; */
+            border: rgb(168,150, 117) solid;
+            width: fit-content;
+            margin: auto;
+            padding: 10px;
+            box-shadow: 6px 6px 7px #888888;
+        }
+
+        hr {
+          
+            width: 70%;
+            margin:auto;
+            border: #474544 solid 1px;
+        }
+
+        #last_detail {
+            float: right;
+            border: rgb(168, 150, 117) solid;
+            padding: 10px;
+            background-color: rgb(129, 111, 111);
+            color: #ffffff;
+            font-size: 10px;
+            box-shadow: 6px 6px 7px #888888;
+            margin-top: -15px;
+        }
+
+        h2 {
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            padding-top: 10px;
+        }
+
+        .socialicons {
+            text-align: center;
+            margin-top: 100px;
+            
+        }
+
+        .sociallink{
+            margin-right: 15px;
+        }
+
+        .sociallink:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="headerlogo">
+                <img src="https://cdn-icons-png.flaticon.com/128/3532/3532358.png" alt="logo" height="90px"
+                    width="100px" />
+            </div>
+            <div class="headeritem">
+                <a href="/home" id="links">Home</a>
+                <a href="/about" id="links">About</a>
+                <a href="/contact" id="links">Contact us</a>
+            </div>
+            <a href="/cart" id="cart"><img
+                    src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-cart-100-most-used-icons-flaticons-flat-flat-icons.png"
+                    alt="Cart" /></a>
+            <a href="/logout" id="logout_link"><img width="48" height="48"
+                    src="https://img.icons8.com/material-outlined/48/shutdown--v1.png" alt="shutdown--v1" /></a>
+        </div>
+    </header>
+
+    <div>
+        <h1>&bull; Keep in touch &bull;</h1>
+    </div>
+
+    <div class="container">
+        <div id="contain_details">
+            <h3>Name</h3>
+            <h2>Anmol Kansal</h2>
+            <hr />
+            <h3>Email</h3>
+            <h2>anmolkansal287@gmail.com</h2>
+            <hr />
+            <h3>Phone</h3>
+            <h2>+917017561058</h2>
+            <hr />
+        </div>
+
+        <div id="last_detail">
+            <h2>Reach Out</h2>
+        </div>
+    </div>
+    <div class="socialicons">
+        <a href="https://instagram.com/_itzanmol?igshid=MTk0NTkyODZkYg==" >
+            <img src="instagram.png" alt="Instagram" height="40px" width="40px" class="sociallink"/>
+        </a>
+        <a href="https://www.linkedin.com/in/anmol-kansal-88b967215/" ><img class="sociallink" src="linkedin.png"
+                alt="Instagram" height="40px" width="40px" /></a>
+        <a href="https://wa.me/qr/4BEU3JXHUA2TH1" class="sociallink"><img src="whatsapp.png" alt="Instagram"
+                height="40px" width="40px" class="sociallink"/></a>
+    </div>
+
+</body>
+
+</html>

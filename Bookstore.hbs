@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book-Store</title>
+
+  <style>
+    body
+{
+  background:url('https://s-media-cache-ak0.pinimg.com/736x/f4/ac/6a/f4ac6aac3afb587f6cae04155656fca3.jpg');
+}
+    /* ----------------------------------------------------- Navbar ---------------------------------------------------------- */
+    .header {
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: space-between;
+      background-image: url(headerimg.jpg);
+      background-size: cover; 
+      width: 100%;
+    }
+
+    .headerlogo {
+      margin-top: 5px;
+    }
+
+    .headeritem {
+      margin-top: 40px;
+      margin-left: auto;
+      font-size: large;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    }
+
+    #links {
+      background-color: rgb(255, 255, 255);
+      color: rgb(51, 50, 48);
+      justify-content: space-between;
+      margin-top: 60px;
+      margin-right: 20px;
+      padding: 10px;
+      text-decoration: none;
+      border-radius:10px;
+    }
+
+    #links:hover {
+      background-color: rgb(76, 151, 76);
+      color: white;
+    }
+
+    /* ------------------- MAIN BOOKS ---------------------------------- */
+    .book {
+      display: inline-block;
+      width: 250px;
+      /* height: 390px; */
+      box-shadow: 0 0 30px #aaa;
+      margin: 52px;
+      padding: 10px 10px 0 10px;
+      vertical-align: top;
+      transition: height 1s;
+    }
+
+    .cover {
+      height: 70%;
+      overflow: hidden;
+    }
+
+    .cover:hover {
+      transform: scale(1.2);
+    }
+
+    .cover img {
+      width: 100%;
+    }
+
+    .book p {
+      margin-top: 12px;
+      font-size: 20px;
+    }
+
+    .book .author {
+      font-size: 15px;
+    }
+    .price{
+      float: right;
+    }
+
+    @media (max-width: 941px) {
+      .container {
+        max-width: 700px;
+      }
+
+      .book {
+        margin: 49px;
+      }
+    }
+
+    @media (max-width: 730px) {
+      .book {
+        display: block;
+        margin: 0 auto;
+        margin-top: 50px;
+      }
+    }
+
+    #cart_button {
+      float: right;
+      height: 30px;
+      width: 40px;
+      margin-top: 10px;
+    }
+
+    #wiki {
+      float: left;
+      background-color: dodgerblue;
+      color: white;
+      height: 28px;
+      width: 50%;
+      border-radius: 50px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #cart {
+       margin-right: 10px;
+       margin-top: 15px;
+    }
+
+    * {
+      margin: 0;
+    }
+    #logout_link{
+      margin-top: 20px;
+      margin-right: 10px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header">
+      <div class="headerlogo">
+        <img src="https://cdn-icons-png.flaticon.com/128/3532/3532358.png" alt="logo" height="90px" width="100px" />
+      </div>
+      <div class="headeritem">
+        <a href="/home" id="links">Home</a>
+        <a href="/about" id="links">About</a>
+        <a href="/contact" id="links">Contact us</a>
+      </div>
+      <a href="/cart" id="cart"><img src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-cart-100-most-used-icons-flaticons-flat-flat-icons.png" alt="Cart"></a>
+      <a href="/logout" id="logout_link"><img width="48" height="48" src="https://img.icons8.com/material-outlined/48/shutdown--v1.png" alt="shutdown--v1"/></a>
+    </div>
+  </header>
+
+
+
+  <main>
+
+    {{#each bookdata}}
+    <div class="book">
+      <div class="cover">
+        <img src="{{this.imageLink}}" alt="Loading...">
+      </div>
+      <div class="description">
+        <h2 class="book-name">{{this.title}}</h2>
+        <h3 class="author"><em>By: </em>{{this.author}}</h3>
+        <h3 class="price">$ {{this.price}}</h3>
+        <p class="language"><em>language: </em>{{this.language}}</p>
+        <p class="year"><em>Year: </em>{{this.year}} </p>
+        <p class="pages"><em>Pages: </em>{{this.pages}}</p>
+        <a href="{{this.link}}"><button type="submit" id="wiki">Wikipedia</button></a>
+        <a href="/additem/{{this.id}}"><img src="addcart.png" alt="Add +" id="cart_button"></a>
+      </div>
+    </div>
+    {{/each}}
+
+  </main>
+
+</body>
+
+</html>

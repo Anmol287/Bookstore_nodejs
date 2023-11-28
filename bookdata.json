@@ -1,0 +1,150 @@
+{
+  "bookdata": [
+    {
+      "id":1,
+      "author": "Chinua Achebe",
+      "price":115,
+      "imageLink": "things-fall-apart.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart\n",
+      "pages": 209,
+      "title": "Things Fall Apart",
+      "year": 1958
+    },
+    {
+      "id":2,
+      "author": "Hans Christian Andersen",
+      "price":190,
+      "imageLink": "fairy-tales.jpg",
+      "language": "Danish",
+      "link": "https://en.wikipedia.org/wiki/Fairy_Tales_Told_for_Children._First_Collection.\n",
+      "pages": 784,
+      "title": "Fairy tales",
+      "year": 1836
+    },
+    {
+      "id":3,
+      "author": "Dante Alighieri",
+      "price":110,
+      "imageLink": "the-divine-comedy.jpg",
+      "language": "Italian",
+      "link": "https://en.wikipedia.org/wiki/Divine_Comedy\n",
+      "pages": 928,
+      "title": "The Divine Comedy",
+      "year": 1315
+    },
+    {
+      "id":4,
+      "author": "Jane Austen",
+      "price":180,
+      "country": "United Kingdom",
+      "imageLink": "pride-and-prejudice.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Pride_and_Prejudice\n",
+      "pages": 226,
+      "title": "Pride and Prejudice",
+      "year": 1813
+    },
+    {
+      "id":5,
+      "author": "Unknown",
+      "price":150,
+      "imageLink": "the-epic-of-gilgamesh.jpg",
+      "language": "Akkadian",
+      "link": "https://en.wikipedia.org/wiki/Epic_of_Gilgamesh\n",
+      "pages": 160,
+      "title": "The Epic Of Gilgamesh",
+      "year": 1700
+    },
+    {
+      "id":6,
+      "author": "J. K. Rowling",
+      "price":180,
+      "imageLink": "Harry_Potter_1997.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Philosopher%27s_Stone\n",
+      "pages": 223,
+      "title": "Harry Potter and the Philosopher's Stone",
+      "year": 1997
+    },
+  
+    {
+      "id":7,
+      "author": "J. K. Rowling",
+      "price":210,
+      "imageLink": "Harry_Potter_1998.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Chamber_of_Secrets\n",
+      "pages": 251,
+      "title": "Harry Potter and the Chamber of Secrets",
+      "year": 1998
+    },
+    {
+      "id":8,
+      "author": "J. K. Rowling",
+      "price":200,
+      "imageLink": "Harry_Potter_1999.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Prisoner_of_Azkaban\n",
+      "pages": 317,
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "year": 1999
+    },
+    {
+      "id":9,
+      "author": "J. K. Rowling",
+      "price":300,
+      "imageLink": "Harry_Potter_2000.png",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Goblet_of_Fire\n",
+      "pages": 636,
+      "title": "Harry Potter and the Goblet of Fire",
+      "year": 2000
+    },
+    {
+      "id":10,
+      "author": "J. K. Rowling",
+      "price":380,
+      "imageLink": "Harry_Potter_2003.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Order_of_the_Phoenix\n",
+      "pages": 766,
+      "title": "Harry Potter and the Order of the Phoenix",
+      "year": 2003
+    },
+    {
+      "id":11,
+      "author": "J. K. Rowling",
+      "price":385,
+      "imageLink": "Harry_Potter_2005.png",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Half-Blood_Prince\n",
+      "pages": 607,
+      "title": "Harry Potter and the Half-Blood Prince",
+      "year": 2005
+    },
+    {
+      "id":12,
+      "author": "J. K. Rowling",
+      "price":375,
+      "imageLink": "Harry_Potter_2007.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Deathly_Hallows\n",
+      "pages": 607,
+      "title": "Harry Potter and the Deathly Hallows",
+      "year": 2007
+    },
+    {
+      "id":13,
+      "author": "J. K. Rowling",
+      "price":450,
+      "imageLink": "Harry_Potter_2016.jpg",
+      "language": "English",
+      "link": "https://en.wikipedia.org/wiki/Harry_Potter_and_the_Cursed_Child\n",
+      "pages": 999,
+      "title": "Harry Potter and the Cursed Child",
+      "year": 2016
+    }
+
+  ]
+}
