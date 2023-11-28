@@ -1,53 +1,53 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 let schema = new Schema({
- "email": String,
+  "email": String,
   "pass": String,
 })
 
-var dotenv=require('dotenv').config({path: __dirname + '/.env'})
-var url=process.env.mongo_url;
+
 let User;
 
-function initialise(){
+function initialise() {
+  var dotenv = require('dotenv').config({ path: __dirname + '/.env' })
+  var url = process.env.mongo_url;
   let db = mongoose.createConnection(url)
-  return new Promise((resolve, reject)=>{
+  return new Promise((resolve, reject) => {
     db.on('err', (err) => {
       console.log("Error: ", err);
       reject();
     })
-    db.once('open',()=>{
+    db.once('open', () => {
       User = db.model("users", schema);
       resolve();
     })
   })
 }
 
-function registeruser(userData){
-    initialise().then(()=>{
-        let user1 = new User(userData)
-        user1.save((err)=>{
-            if(err)
-            {console.log("The user is already present")}
-            else if(err){
-                console.log("error is creating user")
-            }
-        })
+function registeruser(userData) {
+  initialise().then(() => {
+    let user1 = new User(userData)
+    user1.save((err) => {
+      if (err) { console.log("The user is already present") }
+      else if (err) {
+        console.log("error is creating user")
+      }
     })
+  })
 }
-function getuser(Email,Pass){
-    return new Promise((resolve, reject) => {
-        initialise().then(()=>{
-            User.find({email:Email}).exec().then((data)=>{
-              if(data[0].pass==Pass){
-                resolve(true)
-              }
-            })
-            .catch((err)=>{
-               reject(err)
-            })
+function getuser(Email, Pass) {
+  return new Promise((resolve, reject) => {
+    initialise().then(() => {
+      User.find({ email: Email }).exec().then((data) => {
+        if (data[0].pass == Pass) {
+          resolve(true)
+        }
+      })
+        .catch((err) => {
+          reject(err)
         })
     })
+  })
 }
 
-module.exports = { registeruser,getuser};
+module.exports = { registeruser, getuser };
