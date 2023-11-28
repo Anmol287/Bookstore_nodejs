@@ -4,7 +4,7 @@ let app = express();
 const alert = require("alert");
 const body_parser = require("body-parser");
 app.use(body_parser.urlencoded({ extended: false }));
-const checker = require("/auth.js");
+const checker = require("./auth.js");
 app.use(express.static("images")); //use for register folder
 
 
