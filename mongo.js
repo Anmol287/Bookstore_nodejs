@@ -8,9 +8,9 @@ let schema = new Schema({
 var dotenv=require('dotenv').config({path: __dirname + '/.env'})
 var url=process.env.mongo_url;
 let User;
+
 function initialise(){
   let db = mongoose.createConnection(url)
-  
   return new Promise((resolve, reject)=>{
     db.on('err', (err) => {
       console.log("Error: ", err);
@@ -24,10 +24,8 @@ function initialise(){
 }
 
 function registeruser(userData){
-    console.log(userData)
     initialise().then(()=>{
         let user1 = new User(userData)
-        console.log(user1)
         user1.save((err)=>{
             if(err)
             {console.log("The user is already present")}
