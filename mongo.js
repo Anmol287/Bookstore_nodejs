@@ -4,10 +4,10 @@ let schema = new Schema({
   "email": String,
   "pass": String,
 })
-require('dotenv').config({path: __dirname + '/.env'})
 
 let User;
 
+require('dotenv').config({path: __dirname + '/.env'})
 function initialise() {
   let db = mongoose.createConnection(process.env.mongourl)
   return new Promise((resolve, reject) => {

@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require("path");
 let app = express();
-const alert = require("alert");
 const body_parser = require("body-parser");
 app.use(body_parser.urlencoded({ extended: false }));
 const checker = require("./auth.js");
@@ -19,7 +18,7 @@ app.post("/", async (req, res) => {
     if (isAuthenticated) {
       res.redirect("/home");
     } else {
-      alert("Wrong credentials");
+      res.status(400).send("Wrong credentials");
     }
   } catch (error) {
     console.error("Authentication error:", error);
@@ -88,7 +87,7 @@ app.post('/register', function (req, res) {
     })
     .catch((error) => {
       if (error.message === "User already exists") {
-        alert("User already exists. Please choose a different email.");
+        res.send("User already exists. Please choose a different email.");
       } else {
         console.error("Registration error:", error);
         res.status(500).send("Internal Server Error");
