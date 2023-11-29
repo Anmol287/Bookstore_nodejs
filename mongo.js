@@ -9,7 +9,7 @@ require('dotenv').config({path: __dirname + '/.env'})
 let User;
 
 function initialise() {
-  let db = mongoose.createConnection(process.env.mongo_url)
+  let db = mongoose.createConnection(process.env.mongourl)
   return new Promise((resolve, reject) => {
     db.on('err', (err) => {
       console.log("Error: ", err);
