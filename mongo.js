@@ -4,11 +4,12 @@ let schema = new Schema({
   "email": String,
   "pass": String,
 })
+require('dotenv').config({path: __dirname + '/.env'})
 
 let User;
 
 function initialise() {
-  let db = mongoose.createConnection('mongodb+srv://anmol:ckOBxdk5RdxbSy6u@cluster0.p4kxybw.mongodb.net/test')
+  let db = mongoose.createConnection(process.env.mongo_url)
   return new Promise((resolve, reject) => {
     db.on('err', (err) => {
       console.log("Error: ", err);
