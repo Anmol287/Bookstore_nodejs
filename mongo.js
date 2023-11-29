@@ -4,20 +4,13 @@ let schema = new Schema({
   "email": String,
   "pass": String,
 })
-let User;
-// var dotenv = require('dotenv').config({ path: __dirname + '/.env' })
-//   var url = process.env.mongo_url;
 
-require('dotenv').config({ path: __dirname + '/.env' })
+let User;
 
 function initialise() {
-  if (!process.env.mongourl) {
-    console.error("Mongo URL is not defined");
-    return Promise.reject("Mongo URL is not defined");
-  }
-  let db = mongoose.createConnection(process.env.mongourl)
+  let db = mongoose.createConnection('mongodb+srv://anmol:ckOBxdk5RdxbSy6u@cluster0.p4kxybw.mongodb.net/test')
   return new Promise((resolve, reject) => {
-    db.on('error', (err) => {
+    db.on('err', (err) => {
       console.log("Error: ", err);
       reject();
     })
@@ -29,34 +22,36 @@ function initialise() {
 }
 
 function registeruser(userData) {
-  initialise().then(() => {
-    let user1 = new User(userData)
-    user1.save((err) => {
-      
-      if (err) { 
-        console.log("The user is already present") 
-      }
-      else if (err) {
-        console.log("error is creating user")
+  return getuser(userData.email, userData.pass)
+    .then((existingUser) => {
+      if (existingUser) {
+        console.log("User already exists");
+        throw new Error("User already exists");
+      } else {
+        let user1 = new User(userData);
+        return user1.save();
       }
     })
-  })
+    .finally(() => {
+      mongoose.connection.close();
+    });
 }
-function getuser(Email, Pass) {
-  return new Promise((resolve, reject) => {
-    initialise().then(() => {
-      User.findOne({ email: Email }).exec().then((data) => {
-        if (data && data.pass === Pass) {
-           resolve(true);
-        } else {
-           resolve(false); // User not found or incorrect password
-        }
-        mongoose.connection.close();
-      }).catch((err) => {
-          reject(err)
-        })
-    })
-  })
+
+function getuser(email, pass) {
+  return initialise().then(() => {
+    return User.findOne({ email: email }).exec().then((user) => {
+      if (user && user.pass === pass) {
+        return true; // User found and password matches
+      } else {
+        return false; // User not found or incorrect password
+      }
+    }).catch((err) => {
+      console.error("Error finding user:", err);
+      throw err;
+    }).finally(() => {
+      mongoose.connection.close();
+    });
+  });
 }
 
 module.exports = { registeruser, getuser };

@@ -1,41 +1,32 @@
-// const fs = require("fs");
 const mongo = require("./mongo.js");
 let login = false;
 let cartarray = []
 let databook = []
+
+
 function auth(email, pass) {
-  //data = require("D:\\Study\\Mern Stack\\New folder\\Bookstore\\database.json")
-  // console.log(data["Anmol"])
-  //when using json
-  //   if (data[email] == pass) {
-  //     console.log("Authorization Granted");
-  //     login = true;
-  //     return true;
-  //   } else {
-  //     console.log("Intruder detected");
-  //     return false;
-  //   }
 
-  login = true;
   return mongo.getuser(email, pass)
+    .then((isValidUser) => {
+      login = isValidUser
+      return login;
+    })
+    .catch((error) => {
+      console.error("Authentication error:", error);
+      return false;
+    });
 }
 
-
-function registeruser(data) {
-  // data = require("D:\\Study\\Mern Stack\\New folder\\Bookstore\\database.json");
-  // data[email] = pass;
-  // let js = JSON.stringify(data);
-  // fs.writeFile(
-  //   "D:\\Study\\Mern Stack\\New folder\\Bookstore\\database.json",
-  //   js,
-  //   function () {
-  //     console.log("data is entered");
-  //   }
-  // );
-  // console.log("user registered");
-
-  mongo.registeruser(data)
+function registeruser(userData) {
+  return mongo.getuser(userData.email, userData.pass)
+    .then((userExists) => {
+      if (userExists) {
+        throw new Error("User already exists");
+      }
+      return mongo.registeruser(userData);
+    })
 }
+
 
 function getbookdata() {
   let data1 = require("./bookdata.json");
@@ -81,14 +72,4 @@ function totalprice() {
   return price
 }
 
-function cardempty(){
-  if(cartarray.length==0){
-    
-  }
-}
-
-
-//  getbookdata()
-
-//registeruser("anmol","12345")
 module.exports = { auth, registeruser, getbookdata, isuserloggedin, logout, getcartitems, additem, removeitem, totalprice };

@@ -132,9 +132,9 @@
 
     .social-login {
         position: absolute;
-        width: 10%;
+        width: 160px;
         text-align: center;
-        right: 18%;
+        right: 280px;
         color: #fff;
     }
 
@@ -154,6 +154,31 @@
     .social-login__icon:hover {
         transform: scale(1.5);
     }
+
+    @media only screen and (max-width: 768px) {
+        .fullcontent {
+            flex-direction: column;
+            padding: 10% 5%;
+        }
+
+        .headings {
+            flex-basis: 100%;
+            margin-right: 0;
+        }
+
+        .formbox {
+            flex-basis: 100%;
+            margin-top: 5%;
+        }
+
+        .social-login {
+            position: static;
+            text-align: center;
+            right: auto;
+            margin-top: 20px;
+        }
+    }
+    
 </style>
 
 <div class="fullcontent">

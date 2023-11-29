@@ -12,17 +12,23 @@ app.get("/", function (req, res) {
   res.render(path.join(__dirname, "/login.hbs"));
 });
 
-//authentication is performed
-app.post("/", (req, res) => {
-  if (checker.auth(req.body.email, req.body.pass)) {
-    bookdata = checker.getbookdata();
-    res.render(path.join(__dirname, "/Bookstore.hbs"), { bookdata: bookdata });
-  } else {
-    alert("Wrong credential");
+
+app.post("/", async (req, res) => {
+  try {
+    const isAuthenticated = await checker.auth(req.body.email, req.body.pass);
+    if (isAuthenticated) {
+      res.redirect("/home");
+    } else {
+      alert("Wrong credentials");
+    }
+  } catch (error) {
+    console.error("Authentication error:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
+
+
 app.get("/home", (req, res) => {
-  //console.log(bookdata)
   if (checker.isuserloggedin() == true) {
     bookdata = checker.getbookdata();
     res.render(path.join(__dirname, "/Bookstore.hbs"), { bookdata: bookdata });
@@ -30,6 +36,7 @@ app.get("/home", (req, res) => {
     res.render(path.join(__dirname, "/404.hbs"));
   }
 });
+
 
 app.get("/about", (req, res) => {
   if (checker.isuserloggedin() == true) {
@@ -40,21 +47,19 @@ app.get("/about", (req, res) => {
   }
 });
 
-app.get("/contact",(req,res)=>{
-  res.render(path.join(__dirname,"contact.hbs"))
+app.get("/contact", (req, res) => {
+  res.render(path.join(__dirname, "contact.hbs"))
 })
 
 //cart ,add to cart 
-
 app.get("/cart", (req, res) => {
   data = checker.getcartitems()
-  if(data.length==0){
-    res.render(path.join(__dirname,"/emptycart.hbs"))
+  if (data.length == 0) {
+    res.render(path.join(__dirname, "/emptycart.hbs"))
   }
-  else{
-    //data = checker.getcartitems()
-    price=checker.totalprice()
-    res.render(path.join(__dirname, "/cart.hbs"), { cartitems: data , price: price})
+  else {
+    price = checker.totalprice()
+    res.render(path.join(__dirname, "/cart.hbs"), { cartitems: data, price: price })
   }
 });
 
@@ -77,9 +82,20 @@ app.get("/register", function (req, res) {
 });
 
 app.post('/register', function (req, res) {
-    checker.registeruser(req.body)
-    res.render(path.join(__dirname, "/login.hbs"))
-})
+  checker.registeruser(req.body)
+    .then(() => {
+      res.redirect("/"); 
+    })
+    .catch((error) => {
+      if (error.message === "User already exists") {
+        alert("User already exists. Please choose a different email.");
+      } else {
+        console.error("Registration error:", error);
+        res.status(500).send("Internal Server Error");
+      }
+    });
+});
+
 
 app.get("/logout", (req, res) => {
   checker.logout();

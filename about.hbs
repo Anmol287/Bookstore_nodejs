@@ -8,47 +8,71 @@
   <title>Book-Store</title>
 
   <style>
-    /* ----------------------------------------------------- Navbar ---------------------------------------------------------- */
+       /* ----------------------------------------------------- Navbar ---------------------------------------------------------- */
+    /* Base styling */
     .header {
-      background-color: #f1f1f1;
-      display: flex;
-      justify-content: space-between;
       background-image: url(headerimg.jpg);
       background-size: cover;
-      width: 100%;
-    }
-
-    .headerlogo {
-      margin-top: 5px;
-    }
-
-    .headeritem {
-      margin-top: 40px;
-      margin-left: auto;
+      overflow: hidden;
       font-size: large;
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+      font-family: 'Gill Sans', 'Gill SansMT', Calibri, ' Trebuchet MS', sans-serif;
     }
 
-    #links {
+    /* Style the header links */
+
+    /*  line-height: 25px;*/
+
+    #navlinks {
+      float: left;
       background-color: rgb(255, 255, 255);
       color: rgb(0, 0, 0);
-      justify-content: space-between;
-      margin-top: 60px;
+      margin-top: 30px;
       margin-right: 20px;
       padding: 10px;
       text-decoration: none;
       border-radius: 10px;
     }
 
-    #links:hover {
+    /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+
+
+    /* Change the background color on mouse-over */
+    #navlinks:hover {
       background-color: rgb(76, 151, 76);
       color: white;
     }
 
+    /* Style the active/current link*/
+    .header a.active {
+      background-color: rgb(0, 0, 0);
+      color: white;
+    }
+
+    /* Float the link section to the right */
+    .header-right {
+      float: right;
+    }
+
+    /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+    @media screen and (max-width: 500px) {
+      .header a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+
+      .header-right {
+        float: none;
+      }
+    }
+
     #cart {
-      margin-right: 10px;
-      margin-top: 15px;
+      margin-right: 15px;
+      margin-top: 20px;
+    }
+
+    #cart:hover {
+      transform: scale(1.1);
     }
 
     * {
@@ -56,8 +80,12 @@
     }
 
     #logout_link {
-      margin-top: 20px;
-      margin-right: 10px;
+      margin-right: 15px;
+      margin-bottom: 10px;
+    }
+
+    #logout_link:hover {
+      transform: scale(1.1);
     }
 
     /*-------------------content--------------*/
@@ -66,29 +94,50 @@
       background: url("https://s-media-cache-ak0.pinimg.com/736x/f4/ac/6a/f4ac6aac3afb587f6cae04155656fca3.jpg");
     }
 
-    #content_container {
-      /* background-color: #222b31; */
-      color: rgb(66, 64, 64);
-      height: 50%;
-      width: 40%;
-      float: right;
-      margin-right: 15%;
-      margin-top: 5%;
-      padding: 20px;
-      border-radius: 10%;
-      font-family: 'Dancing Script', cursive;
-     
-    }
-
-    center {
+       center {
       text-decoration: underline;
     }
 
-    .profile_img {
-      border-radius: 20px;
-      margin: 10%;
-      box-shadow: 6px 6px 7px #888888;
-    }
+#content_container {
+  color: rgb(66, 64, 64);
+  width: 60%; /* Adjusted width for responsiveness */
+  margin: 5% auto; /* Center the container and adjust top margin */
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Dancing Script', cursive;
+}
+
+.profile_container {
+  display: flex;
+  justify-content: space-around; /* Adjust as needed */
+  align-items: center; /* Center vertically */
+}
+
+.profile_img {
+  margin:auto;
+  border-radius: 20px;
+  box-shadow: 6px 6px 7px #888888;
+  max-width: 100%; /* Ensure the image does not exceed its container */
+  height: auto; /* Maintain aspect ratio */
+}
+.profile_img:hover{
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .profile_container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: center; /* Center items horizontally */
+  }
+.profile_img{
+  margin-top: 40px;
+}
+  #content_container {
+    width: 90%; /* Adjusted width for smaller screens */
+  }
+}
+
+
 
     span {
       color: pink;
@@ -100,24 +149,23 @@
 <body>
   <header>
     <div class="header">
-      <div class="headerlogo">
-        <img src="https://cdn-icons-png.flaticon.com/128/3532/3532358.png" alt="logo" height="90px" width="100px" />
+      <a href="#default" class="headerlogo"><img src="https://cdn-icons-png.flaticon.com/128/3532/3532358.png"
+          alt="logo" height="90px" width="100px" /></a>
+      <div class="header-right">
+        <a class="active" href="/home" id="navlinks">Home</a>
+        <a href="/contact" id="navlinks">Contact</a>
+        <a href="/about" id="navlinks">About</a>
+
+        <a href="/cart"><img id="cart" width="60" height="60"
+            src="cart.png"
+            alt="Cart"></a>
+        <a href="/logout"><img width="48" height="48" id="logout_link"
+            src="logout.png" alt="logout" /></a>
       </div>
-      <div class="headeritem">
-        <a href="/home" id="links">Home</a>
-        <a href="/about" id="links">About</a>
-        <a href="/contact" id="links">Contact us</a>
-      </div>
-      <a href="/cart" id="cart"><img
-          src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-cart-100-most-used-icons-flaticons-flat-flat-icons.png"
-          alt="Cart"></a>
-      <a href="/logout" id="logout_link"><img width="48" height="48"
-          src="https://img.icons8.com/material-outlined/48/shutdown--v1.png" alt="shutdown--v1" /></a>
-    </div>
   </header>
 
 
-  <div>
+  <div class="profile_container">
     <img class="profile_img" src="profile.jpeg" alt="profile" width="300px" height="5%">
     <div id="content_container">
       <center>
